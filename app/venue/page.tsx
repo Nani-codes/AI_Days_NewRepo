@@ -1,9 +1,9 @@
-import React from 'react'
+import Venue from "./Venue";
 
-function venue() {
+export default function venue() {
   return (
-    <div>venue</div>
+    <>
+      <Venue />
+    </>
   )
 }
-
-export default venue

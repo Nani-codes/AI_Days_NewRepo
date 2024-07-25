@@ -1,4 +1,26 @@
-// `app/dashboard/page.tsx` is the UI for the `/dashboard` URL
-export default function Page() {
-    return <h1>Hello, Agenda Page!</h1>
-  }
+import AgendaTemplate from "./AgendaTemplate";
+import MainAgenda from "./MainAgenda";
+// import { Layout } from "../components//layout";
+import getConferenceEvents, { ConferenceEvent } from "../../data/drupal/node--conference_events";
+import Head from 'next/head';
+
+
+export default function AgendaPage({
+  events
+}: {
+  events: ConferenceEvent[]
+}) {
+  return (<>
+    <MainAgenda events={events} />
+  </>)
+}
+
+export async function getserversideprops(context) {
+  const events = await getConferenceEvents(context);
+
+  return {
+    props: {
+      events,
+    }
+  };
+}
